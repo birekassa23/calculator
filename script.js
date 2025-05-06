@@ -7,50 +7,68 @@ const buttons = document.querySelectorAll('.buttons button');
 // Set display to empty when the page loads
 display.value = "";
 
-// This function updates the display value (reusable)
-function updateDisplay(value) {
+// --- CALLBACK EXAMPLE ---
+function updateDisplay(value, callback) {
     display.value += value;
+
+    // Call the callback if provided
+    if (callback) {
+        callback();
+    }
 }
 
-// This function clears the display (reset)
+// Clear the display
 function clearDisplay() {
     display.value = "";
 }
 
-// This function removes the last character (like backspace)
+// Remove last character
 function backspace() {
     display.value = display.value.slice(0, -1);
 }
 
-// This function evaluates the expression using JavaScript eval()
-function calculate() {
+// --- PROMISE EXAMPLE ---
+function evaluateExpression(expression) {
+    return new Promise((resolve, reject) => {
+        try {
+            const result = eval(expression);
+            resolve(result); // success
+        } catch (error) {
+            reject("Invalid Expression"); // error
+        }
+    });
+}
+
+// --- ASYNC / AWAIT EXAMPLE ---
+async function calculate() {
     try {
-        // Try to evaluate the expression
-        const result = eval(display.value);
+        const result = await evaluateExpression(display.value); // wait for result
         display.value = result;
     } catch (error) {
         display.value = "Error";
     }
 }
 
-// Loop through all buttons and add event listeners (callback style)
+// Handle button clicks
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.textContent;
 
-        // Handle different types of buttons
         switch (value) {
             case 'C':
                 clearDisplay();
                 break;
             case '←':
-                backspace(); 
+                backspace();
                 break;
             case '=':
-                calculate(); 
+                calculate(); // uses async/await
                 break;
             default:
-                updateDisplay(value);
+                // Use callback to log each click
+                updateDisplay(value, () => {
+                    console.log(`Button "${value}" clicked`);
+                });
         }
     });
 });
