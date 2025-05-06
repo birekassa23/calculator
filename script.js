@@ -7,7 +7,10 @@ const buttons = document.querySelectorAll('.buttons button');
 // Set display to empty when the page loads
 display.value = "";
 
+
+//=======================================
 // --- CALLBACK EXAMPLE ---
+//=======================================
 function updateDisplay(value, callback) {
     display.value += value;
 
@@ -27,7 +30,9 @@ function backspace() {
     display.value = display.value.slice(0, -1);
 }
 
+//========================================================
 // --- PROMISE EXAMPLE ---
+//========================================================
 function evaluateExpression(expression) {
     return new Promise((resolve, reject) => {
         try {
@@ -39,7 +44,11 @@ function evaluateExpression(expression) {
     });
 }
 
+
+
+//=============================================================
 // --- ASYNC / AWAIT EXAMPLE ---
+//=============================================================
 async function calculate() {
     try {
         const result = await evaluateExpression(display.value); // wait for result

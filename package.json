@@ -1,0 +1,41 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "This is a simple calculator built using HTML, CSS, and JavaScript with Electron.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/birekassa23/calculator.git"
+  },
+  "keywords": [],
+  "author": "Birehanu Kassa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/birekassa23/calculator/issues"
+  },
+  "homepage": "https://github.com/birekassa23/calculator#readme",
+  "devDependencies": {
+    "electron": "^36.1.0",
+    "electron-builder": "^24.4.0"
+  },
+  "build": {
+    "appId": "com.birekassa.calculator",
+    "productName": "Calculator",
+    "win": {
+      "target": "nsis",
+      "icon": "path/to/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "path/to/icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "path/to/icon.png"
+    }
+  }
+}
